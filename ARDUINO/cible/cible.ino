@@ -19,10 +19,6 @@ void setup(void) {
 
 void loop(void)
 {
-
-  unsigned long tinit = millis();
-  unsigned long t1,t2;
-  
   byte percent = 0;
 
   unsigned int photodiode[4] = {0, 0, 0, 0}; // declare le vecteur de ints qui auront les valeurs du analogread
@@ -32,8 +28,7 @@ void loop(void)
   byte indice_insig = 0;
   float xcm = -1, ycm = -1;
 
-  float dist = 100.0; // retirer
-
+  
 
   // ------ Obtention des valeurs -----
   for (byte i = 0; i < 4; i++) {
@@ -46,8 +41,6 @@ void loop(void)
     ptd_sum += photodiode[i];     // on somme tous les valeurs
  
   }
-
-  t1 = millis()-tinit;
 
   if ( ptd_sum > SEUIL)   // premier check pour voir si le minimum est attendue
   {
@@ -85,13 +78,10 @@ void loop(void)
 
       // --------- On trouve la distance du centre de masse à l'origine, et on trouve le score correspondant a cetter distance
 
-      dist = sqrt( x * x + y * y );
       percent = (byte)map( sqrt( x * x + y * y ) , 68.0, 0, SCORE_MINIMAL, 100); // notez que sqrt(x2+y2) = distance
 
     }
   }
-
-  t2 = millis()-tinit;
 
   Serial.print(photodiode[0]);
   Serial.print("\t");
@@ -104,15 +94,8 @@ void loop(void)
   Serial.print(x);
   Serial.print("\t");
   Serial.print(y);
-  Serial.print("\t");
-  Serial.print(dist);
-  Serial.print("\t");
-  Serial.print(t1);
-  Serial.print("\t");
-  Serial.print(t2);
-  Serial.print("\t");
   Serial.println(percent);
 
-  delay(1000);
+  delay(1000); // debug only
 
 }
