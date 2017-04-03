@@ -28,8 +28,6 @@ void loop(void)
   byte indice_insig = 0;
   float xcm = -1, ycm = -1;
 
-  
-
   // ------ Obtention des valeurs -----
   for (byte i = 0; i < 4; i++) {
     for (byte j = 0; j < 32; j++)   // on fait la moyenne entre 32 echantillons
