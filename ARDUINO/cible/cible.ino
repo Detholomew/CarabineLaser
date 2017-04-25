@@ -1,3 +1,4 @@
+#include "Arduino.h"
 #define CENTRE 0  // Pate des photodiodes
 #define AXE1 1
 #define AXE2 2
@@ -7,14 +8,13 @@
 #define X_POS2 3.0
 #define Y_POS1 6.0
 
-#define SENSIBILITE 0.5 // sensibilité de la cible. 0 < SENSIBILITE < 1; Le plus haute le plus moins selectif
-#define SEUIL 40.0     // define la valeur moyenne minimum pour determiner la pourcentage
+#define SENSIBILITE 0.95 // sensibilité de la cible. 0 < SENSIBILITE < 1; Le plus haute le plus moins selectif
+#define SEUIL 70.0     // define la valeur moyenne minimum pour determiner la pourcentage
 
 #define SCORE_MINIMAL 00.0
 
 void setup(void) {
   Serial.begin(115200);
-
 }
 
 void loop(void)
@@ -37,7 +37,7 @@ void loop(void)
 
     photodiode[i] /= 32;          // on fait la moyenne entre les 32 echantillons
     ptd_sum += photodiode[i];     // on somme tous les valeurs
- 
+
   }
 
   if ( ptd_sum > SEUIL)   // premier check pour voir si le minimum est attendue
@@ -78,22 +78,11 @@ void loop(void)
 
       percent = (byte)map( sqrt( x * x + y * y ) , 68.0, 0, SCORE_MINIMAL, 100); // notez que sqrt(x2+y2) = distance
 
+        
+
+    Serial.println(percent);
+
     }
   }
-
-  Serial.print(photodiode[0]);
-  Serial.print("\t");
-  Serial.print(photodiode[1]);
-  Serial.print("\t");
-  Serial.print(photodiode[2]);
-  Serial.print("\t");
-  Serial.print(photodiode[3]);
-  Serial.print("\t");
-  Serial.print(x);
-  Serial.print("\t");
-  Serial.print(y);
-  Serial.println(percent);
-
-  delay(1000); // debug only
 
 }

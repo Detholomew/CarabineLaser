@@ -7,7 +7,7 @@ boolean volatile Cote, Centre, ATire;
 int wakePin = 2;                 // pin used for waking up
 int sleepStatus = 0;             // variable to store a request for sleep
 int count = 0;                   // counter
-/* ----- Fin du test ----- */
+----- Fin du test ----- */
 
 
 void setup() 
@@ -16,7 +16,7 @@ void setup()
   
 /* ----- Attention ceci est un test ---- 
   pinMode(wakePin, INPUT);
-/* ----- Fin du test ----- */
+ ----- Fin du test ----- */
   
 
   pinGachette=7; //Interrupteurs Gachette et Recharge sur ports 7 et 6
@@ -33,7 +33,7 @@ void setup()
 /* ----- Attention ceci est un test ----   
   attachInterrupt(0, sleepNow, LOW); // use interrupt 0 (pin 2) and run function
                                       // wakeUpNow when pin 2 gets LOW
-/* ----- Fin du test ----- */
+ ----- Fin du test ----- */
 
 }
 
@@ -101,5 +101,5 @@ void wakeUpNow()
 {
 }
 
-/* ----- Fin du test ----- */
+ ----- Fin du test ----- */
 
