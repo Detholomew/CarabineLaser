@@ -8,13 +8,13 @@
 #define X_POS2 3.0
 #define Y_POS1 6.0
 
-#define SENSIBILITE 0.95 // sensibilité de la cible. 0 < SENSIBILITE < 1; Le plus haute le plus moins selectif
-#define SEUIL 70.0     // define la valeur moyenne minimum pour determiner la pourcentage
+#define SENSIBILITE 0.55 // sensibilité de la cible. 0 < SENSIBILITE < 1; Le plus haute le plus moins selectif
+#define SEUIL 40.0     // define la valeur moyenne minimum pour determiner la pourcentage
 
 #define SCORE_MINIMAL 00.0
 
 void setup(void) {
-  Serial.begin(115200);
+  Serial.begin(9600);
 }
 
 void loop(void)
@@ -40,8 +40,12 @@ void loop(void)
 
   }
 
+
+
+
   if ( ptd_sum > SEUIL)   // premier check pour voir si le minimum est attendue
   {
+
 
     // ------ Check photodiode avec valeur plus faible -----
 
@@ -78,10 +82,10 @@ void loop(void)
 
       percent = (byte)map( sqrt( x * x + y * y ) , 68.0, 0, SCORE_MINIMAL, 100); // notez que sqrt(x2+y2) = distance
 
-        
+      Serial.println(percent);
+      //Serial.write(percent);      // Envoye donnes via le xbee
 
-    Serial.println(percent);
-
+      delay(110); // delay pour afficher seulement une fois le resultat
     }
   }
 
