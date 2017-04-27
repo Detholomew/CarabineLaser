@@ -1,3 +1,5 @@
+// Based on https://github.com/mcherry/I2Ceeprom
+
 #include "Arduino.h"
 #include <Wire.h>
 #define DEVID 0x50
